@@ -50,7 +50,7 @@ class UseCase(BaseModel):
     postconditions: Optional[list[str]] = None
 
 
-class Requirement(BaseModel):
+class FunctionalRequirement(BaseModel):
     """Functional requirement."""
     id: str
     title: str
@@ -74,7 +74,7 @@ class RequirementAnalysisResult(BaseModel):
     stakeholders: list[str] = Field(default_factory=list)
     actors: list[Actor] = Field(default_factory=list)
     use_cases: list[UseCase] = Field(default_factory=list)
-    functional_requirements: list[Requirement] = Field(default_factory=list)
+    functional_requirements: list[FunctionalRequirement] = Field(default_factory=list)
     non_functional_requirements: list[NonFunctionalRequirement] = Field(default_factory=list)
     constraints: list[str] = Field(default_factory=list)
     assumptions: list[str] = Field(default_factory=list)

@@ -18,7 +18,7 @@ from ai.validator import OutputValidator
 from ai.context_builder import ContextBuilder
 from database.connection import SessionLocal
 from database.schema import (
-    Artifact, LLMCall, Project, ExecutionHistory
+    Artifact, LLMCall, ProjectMetadata, ExecutionHistory
 )
 
 logger = logging.getLogger(__name__)
@@ -201,8 +201,8 @@ class BaseAgent(ABC):
             Project context dictionary
         """
         with SessionLocal() as session:
-            project = session.query(Project).filter(
-                Project.id == self.project_id
+            project = session.query(ProjectMetadata).filter(
+                ProjectMetadata.id == self.project_id
             ).first()
 
             if not project:
