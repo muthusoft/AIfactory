@@ -1,0 +1,10 @@
+2026-07-03 00:54:38,861 - pipeline.executor - INFO - Pipeline executor initialized for project temp
+2026-07-03 00:55:35,191 - database.connection - INFO - Database initialized: sqlite:///./factory.db
+2026-07-03 00:55:35,194 - __main__ - ERROR - Initialization failed: Foreign key associated with column 'requirements.project_id' could not find table 'projects' with which to generate a foreign key to target column 'id'
+2026-07-03 00:56:48,302 - database.connection - INFO - Database initialized: sqlite:///./factory.db
+2026-07-03 00:57:03,321 - database.connection - INFO - Database initialized: sqlite:///./factory.db
+2026-07-03 00:57:10,149 - database.connection - INFO - Database initialized: sqlite:///./factory.db
+2026-07-03 00:57:10,178 - __main__ - ERROR - Failed to list projects: Instance <ProjectMetadata at 0x7d705264cec0> is not bound to a Session; attribute refresh operation cannot proceed (Background on this error at: https://sqlalche.me/e/20/bhk3)
+2026-07-03 00:57:26,353 - database.connection - INFO - Database initialized: sqlite:///./factory.db
+2026-07-03 00:58:50,304 - database.connection - INFO - Database initialized: sqlite:///./factory.db
+2026-07-03 01:00:57,833 - pipeline.executor - INFO - Pipeline executor initialized for project test

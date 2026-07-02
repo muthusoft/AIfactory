@@ -1,0 +1,324 @@
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                                                                               ║
+║      AI SOFTWARE FACTORY - RESTRUCTURED FOR DYNAMIC SCHEMA GENERATION        ║
+║                                                                               ║
+║                    Version 2.0 - Dynamic & Modular Design                    ║
+║                                                                               ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+✨ KEY IMPROVEMENTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ DYNAMIC SCHEMA GENERATION
+   • No pre-defined database schema
+   • Each project generates its own schema based on requirements
+   • Schema is stored as JSON and versioned
+   • Can be regenerated at any time
+
+✅ INDEPENDENT PHASE EXECUTION
+   • Run any SDLC phase individually
+   • Dependency checking with --force override
+   • Resume interrupted pipelines
+   • Re-run phases with updated requirements
+
+✅ FLEXIBLE PIPELINE
+   • 15 SDLC phases with automatic dependency ordering
+   • Run full pipeline or select specific phases
+   • Parallel execution ready
+   • Skip unnecessary phases
+
+✅ MINIMAL FACTORY DATABASE
+   • Only stores metadata and artifacts
+   • Not specific to any project type
+   • Scales to thousands of projects
+   • No schema bloat
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📊 NEW ARCHITECTURE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Business Requirement (Input)
+    ↓
+Pipeline Executor
+├── Phase 1: Requirements Analysis
+│   └── Generates: Domain Model
+├── Phase 2: Database Design
+│   └── Generates: Database Schema (JSON)
+├── Phase 3: Architecture Design
+│   └── Generates: System Architecture
+├── Phase 4: API Design
+│   ├── Uses: Database Schema
+│   └── Generates: API Specification
+├── Phase 5: Code Generation
+│   ├── Uses: Schema + Architecture + API
+│   └── Generates: Source Code
+├── ... (11 more phases)
+└── Final Phase: Packaging
+    └── Produces: Complete Application
+
+Each Phase:
+  • Runs independently
+  • Outputs stored as artifacts
+  • Can be re-executed
+  • Uses previous phase outputs
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 AVAILABLE PHASES (15 Total)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1.  requirements_analysis          → requirements_document
+2.  business_analysis              → business_analysis_document
+3.  domain_modeling                → domain_model
+4.  database_design                → database_schema, sql_script
+5.  architecture_design            → architecture_design
+6.  api_design                     → api_specification, openapi_spec
+7.  ui_design                      → ui_design, wireframes
+8.  task_planning                  → task_breakdown, epics, stories
+9.  code_generation                → backend_code, frontend_code, database_code
+10. code_review                    → review_report, issues_found
+11. test_generation                → unit_tests, integration_tests
+12. bug_detection                  → bugs_found, bug_report
+13. bug_fixing                     → fixed_code
+14. documentation                  → readme, api_docs, user_guide
+15. packaging                      → deliverable
+
+Each phase has dependencies. Run:
+  python main.py list-phases
+
+To see full dependency graph.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 USAGE EXAMPLES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. CREATE PROJECT
+   python main.py create-project \
+     --name "todo-app" \
+     --requirement "Task management app with users, todos, categories"
+
+2. LIST AVAILABLE PHASES
+   python main.py list-phases
+
+3. RUN SINGLE PHASE
+   python main.py run-phase \
+     --project "todo-app" \
+     --phase requirements_analysis
+
+4. RUN PHASE (SKIP DEPENDENCIES)
+   python main.py run-phase \
+     --project "todo-app" \
+     --phase api_design \
+     --force
+
+5. RUN SPECIFIC PHASES IN ORDER
+   python main.py run-pipeline \
+     --project "todo-app" \
+     --phases "requirements_analysis,database_design,api_design"
+
+6. RUN FULL PIPELINE (ALL PHASES)
+   python main.py run-pipeline \
+     --project "todo-app"
+
+7. CHECK PROJECT STATUS
+   python main.py show-status \
+     --project "todo-app"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🏗️ HOW IT WORKS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Step 1: Business Requirement Input
+  └─ "Build a task management app with users, todos, and categories"
+
+Step 2: Requirements Analysis Phase
+  └─ AI extracts:
+     • Business objectives
+     • Actors and use cases
+     • Functional requirements
+     • Non-functional requirements
+     • Domain entities: User, Todo, Category
+
+Step 3: Database Design Phase
+  └─ AI generates schema:
+     • users table (id, email, name, password_hash)
+     • todos table (id, user_id, title, completed, due_date)
+     • categories table (id, user_id, name)
+     • Relationships and indexes
+     • Foreign keys and constraints
+
+Step 4: API Design Phase
+  └─ AI generates REST API:
+     • /users endpoints (CRUD)
+     • /todos endpoints (CRUD)
+     • /categories endpoints (CRUD)
+     • Based on generated schema
+
+Step 5: Code Generation Phase
+  └─ AI generates:
+     • Backend code (FastAPI)
+     • Frontend code (React/Vue)
+     • Database layer (SQLAlchemy models)
+     • All based on schema
+
+Step 6: Remaining Phases
+  └─ Tests, documentation, bug fixes, packaging
+
+Result: Complete, runnable application with custom database!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💾 SCHEMA STORAGE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Schema is stored in ProjectMetadata:
+
+  project_metadata.generated_schema = {
+    "project_name": "todo-app",
+    "version": 1,
+    "tables": [
+      {
+        "name": "users",
+        "columns": [
+          {"name": "id", "type": "integer", "primary_key": true},
+          {"name": "email", "type": "string", "unique": true, "indexed": true},
+          {"name": "password_hash", "type": "text"},
+          {"name": "created_at", "type": "datetime"}
+        ]
+      },
+      {
+        "name": "todos",
+        "columns": [
+          {"name": "id", "type": "integer", "primary_key": true},
+          {"name": "user_id", "type": "integer", "foreign_key": "users.id"},
+          {"name": "title", "type": "string"},
+          {"name": "completed", "type": "boolean", "default": false},
+          {"name": "due_date", "type": "datetime"}
+        ]
+      },
+      ...
+    ]
+  }
+
+Benefits:
+  • Schema is versioned
+  • Can be regenerated
+  • Can be viewed/modified before code generation
+  • Can be exported to SQL
+  • Auditable and traceable
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔄 PHASE DEPENDENCIES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+requirements_analysis (root)
+├── business_analysis
+│   └── domain_modeling
+│       └── database_design ─────────────┐
+├── architecture_design ─────────────────┼──┐
+│   └── api_design ──────────────────────┤──┼──┐
+│   └── ui_design ──────────────────────┐│  │  │
+├── task_planning ──────────────────────┤│  │  │
+│   └── code_generation ────────────────┼┼──┘  │
+│       ├── code_review ───┐           ││      │
+│       ├── test_generation┤──┐        ││      │
+│       │                  │  │        ││      │
+│       └── bug_detection ─┼──┼────┐   ││      │
+│           └── bug_fixing ┘  │    │   ││      │
+│                              │    │   ││      │
+│               documentation ──┴────┴───┴┘      │
+│                  └── packaging ─────────────────┘
+
+Use --force to run out of order or skip dependencies.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎁 WHAT YOU GET
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+For Each Project:
+
+  ✓ Dynamic database schema (custom for that project)
+  ✓ SQL creation scripts
+  ✓ API specification (OpenAPI)
+  ✓ Backend code (FastAPI or similar)
+  ✓ Frontend code (React, Vue, etc.)
+  ✓ Unit tests
+  ✓ Integration tests
+  ✓ API documentation
+  ✓ User guide
+  ✓ Developer guide
+  ✓ Setup instructions
+  ✓ Deployment guide
+  ✓ Complete application package
+
+All customized for the specific requirements!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✨ KEY DIFFERENCES FROM V1
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+V1 (Old):
+  • Pre-defined 13-table schema
+  • Same schema for all projects
+  • All phases always run together
+  • Not customizable per project
+  • Schema not versioned
+
+V2 (New):
+  • Dynamic schema generation
+  • Custom schema per project
+  • Each phase runs independently
+  • Highly customizable
+  • Schema is versioned and stored
+  • Can skip or re-order phases
+  • Can force-run without dependencies
+  • Better for complex projects
+  • More flexible and scalable
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚀 GETTING STARTED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Delete old database:
+   rm factory.db
+
+2. Create a project:
+   python main.py create-project \
+     --name "my-app" \
+     --requirement "Your requirement here"
+
+3. List available phases:
+   python main.py list-phases
+
+4. Run the pipeline:
+   python main.py run-pipeline --project "my-app"
+
+That's it! Your application will be generated with a custom database schema!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📚 DOCUMENTATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  → docs/DYNAMIC_SCHEMA.md         Full guide to dynamic schema
+  → RESTRUCTURING_NOTES.md         What changed and why
+  → docs/ARCHITECTURE.md           System architecture
+  → QUICK_REFERENCE.md             Quick command reference
+
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                                                                               ║
+║           AI SOFTWARE FACTORY V2.0 - READY FOR DYNAMIC GENERATION             ║
+║                                                                               ║
+║  Each project now gets exactly the database structure it needs, generated     ║
+║  automatically from its unique business requirements.                         ║
+║                                                                               ║
+║  Run individual phases or the complete pipeline - total flexibility!          ║
+║                                                                               ║
+╚═══════════════════════════════════════════════════════════════════════════════╝

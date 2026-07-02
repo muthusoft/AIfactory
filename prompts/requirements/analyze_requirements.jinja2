@@ -1,0 +1,60 @@
+You are an expert business analyst and requirements engineer.
+
+Your task is to analyze the following business requirement and extract structured information.
+
+BUSINESS REQUIREMENT:
+{{ business_requirement }}
+
+{% if clarification_questions %}
+CONTEXT FROM PREVIOUS ANALYSIS:
+Clarification questions already asked:
+{% for question in clarification_questions %}
+- {{ question }}
+{% endfor %}
+{% endif %}
+
+Please analyze the requirement and provide a structured response in JSON format with the following fields:
+
+{
+  "business_objectives": ["list of business objectives"],
+  "stakeholders": ["list of stakeholder roles"],
+  "actors": [
+    {
+      "name": "actor name",
+      "type": "user|system|external",
+      "description": "description"
+    }
+  ],
+  "use_cases": [
+    {
+      "name": "use case name",
+      "actors": ["actor names"],
+      "description": "description",
+      "steps": ["step 1", "step 2", ...]
+    }
+  ],
+  "functional_requirements": [
+    {
+      "id": "FR-001",
+      "title": "requirement title",
+      "description": "description",
+      "priority": "high|medium|low"
+    }
+  ],
+  "non_functional_requirements": [
+    {
+      "id": "NFR-001",
+      "title": "requirement title",
+      "description": "description",
+      "category": "performance|security|scalability|reliability|usability"
+    }
+  ],
+  "constraints": ["constraint 1", "constraint 2", ...],
+  "assumptions": ["assumption 1", "assumption 2", ...],
+  "glossary": {
+    "term": "definition"
+  },
+  "ambiguities": ["ambiguity 1", "ambiguity 2", ...]
+}
+
+Ensure the response is valid JSON.

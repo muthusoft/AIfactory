@@ -1,0 +1,63 @@
+# AI Software Factory Configuration
+
+# LLM Configuration
+llm:
+  # Provider: openai, anthropic, gemini, openrouter, ollama, lm-studio, vllm
+  provider: openai
+  
+  # API Key (can also use environment variable)
+  api_key: ${OPENAI_API_KEY}
+  
+  # Default model
+  model: gpt-4-turbo-preview
+  
+  # Default parameters
+  temperature: 0.7
+  max_tokens: 4000
+  top_p: 1.0
+  
+  # Retry policy
+  retry:
+    max_retries: 3
+    initial_wait: 1  # seconds
+    backoff_factor: 2.0
+    max_wait: 60
+
+# Database Configuration
+database:
+  type: sqlite
+  url: sqlite:///./factory.db
+  echo: false  # Set to true for SQL debugging
+
+# Project Configuration
+project:
+  base_path: ./projects
+  auto_create: true
+  
+# Logging Configuration
+logging:
+  level: INFO
+  format: json
+  file: ./logs/factory.log
+  max_size: 10M
+  backup_count: 5
+
+# Pipeline Configuration
+pipeline:
+  timeout: 3600  # seconds per phase
+  checkpoint: true
+  resumable: true
+
+# UI Configuration
+ui:
+  host: 0.0.0.0
+  port: 8000
+  reload: true
+  workers: 1
+  theme: dark
+
+# Execution Configuration
+execution:
+  parallel: false
+  phase_timeout: 1800
+  log_level: DEBUG

@@ -1,0 +1,121 @@
+# Prompt Template Registry
+
+prompts:
+  requirements/analyze_requirements:
+    description: Analyze business requirements and extract structured information
+    version: 1.0
+    inputs:
+      - business_requirement
+      - clarification_questions
+    outputs:
+      - business_objectives
+      - actors
+      - use_cases
+      - constraints
+      - assumptions
+      - glossary
+
+  requirements/ask_clarifications:
+    description: Generate clarification questions for ambiguous requirements
+    version: 1.0
+    inputs:
+      - business_requirement
+    outputs:
+      - clarification_questions
+
+  architecture/design_system:
+    description: Design system architecture
+    version: 1.0
+    inputs:
+      - requirements
+      - technology_preferences
+    outputs:
+      - architecture_diagram
+      - components
+      - technology_stack
+      - folder_structure
+
+  database/design_schema:
+    description: Design database schema
+    version: 1.0
+    inputs:
+      - requirements
+      - entities
+    outputs:
+      - entities
+      - relationships
+      - schema_sql
+
+  api/design_endpoints:
+    description: Design REST API endpoints
+    version: 1.0
+    inputs:
+      - requirements
+      - operations
+    outputs:
+      - endpoints
+      - request_schemas
+      - response_schemas
+      - openapi_spec
+
+  implementation/create_tasks:
+    description: Break down implementation into tasks
+    version: 1.0
+    inputs:
+      - architecture
+      - requirements
+    outputs:
+      - epics
+      - features
+      - stories
+      - tasks
+
+  implementation/generate_code:
+    description: Generate code for a specific task
+    version: 1.0
+    inputs:
+      - task_description
+      - architecture
+      - tech_stack
+    outputs:
+      - code
+      - file_path
+      - imports_required
+
+  testing/generate_unit_tests:
+    description: Generate unit tests for code
+    version: 1.0
+    inputs:
+      - code
+      - language
+    outputs:
+      - test_code
+      - test_cases
+
+  documentation/generate_readme:
+    description: Generate README documentation
+    version: 1.0
+    inputs:
+      - project_name
+      - description
+      - features
+      - setup_instructions
+    outputs:
+      - readme_content
+
+system_prompts:
+  architect:
+    description: System prompt for architecture agent
+    version: 1.0
+  
+  developer:
+    description: System prompt for code generation agent
+    version: 1.0
+  
+  tester:
+    description: System prompt for test generation agent
+    version: 1.0
+  
+  reviewer:
+    description: System prompt for code review agent
+    version: 1.0

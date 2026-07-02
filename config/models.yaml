@@ -1,0 +1,137 @@
+# LLM Model Configurations
+
+models:
+  # OpenAI Models
+  openai:
+    gpt-4-turbo:
+      name: gpt-4-turbo-preview
+      provider: openai
+      context_window: 128000
+      cost:
+        input: 0.00001
+        output: 0.00003
+      best_for:
+        - complex_analysis
+        - code_review
+        - architecture_design
+    
+    gpt-4o:
+      name: gpt-4o
+      provider: openai
+      context_window: 128000
+      cost:
+        input: 0.000005
+        output: 0.000015
+      best_for:
+        - general_tasks
+        - code_generation
+    
+    gpt-3.5-turbo:
+      name: gpt-3.5-turbo
+      provider: openai
+      context_window: 4096
+      cost:
+        input: 0.0000005
+        output: 0.0000015
+      best_for:
+        - simple_tasks
+        - budget_constrained
+
+  # Anthropic Models
+  anthropic:
+    claude-3-opus:
+      name: claude-3-opus-20240229
+      provider: anthropic
+      context_window: 200000
+      cost:
+        input: 0.000015
+        output: 0.000075
+      best_for:
+        - complex_analysis
+        - long_context
+        - code_review
+
+    claude-3-sonnet:
+      name: claude-3-sonnet-20240229
+      provider: anthropic
+      context_window: 200000
+      cost:
+        input: 0.000003
+        output: 0.000015
+      best_for:
+        - general_tasks
+        - code_generation
+
+    claude-3-haiku:
+      name: claude-3-haiku-20240307
+      provider: anthropic
+      context_window: 200000
+      cost:
+        input: 0.00000025
+        output: 0.00000125
+      best_for:
+        - simple_tasks
+        - budget_constrained
+
+  # Google Models
+  google:
+    gemini-pro:
+      name: gemini-1.5-pro
+      provider: gemini
+      context_window: 1000000
+      cost:
+        input: 0.0000035
+        output: 0.0000105
+      best_for:
+        - long_context
+        - multimodal
+
+    gemini-flash:
+      name: gemini-1.5-flash
+      provider: gemini
+      context_window: 1000000
+      cost:
+        input: 0.000000075
+        output: 0.0000003
+      best_for:
+        - fast_responses
+        - budget_constrained
+
+  # Local Models (via Ollama or LM Studio)
+  local:
+    mistral-7b:
+      name: mistral:7b
+      provider: ollama
+      context_window: 8192
+      cost:
+        input: 0
+        output: 0
+      best_for:
+        - local_only
+        - privacy_critical
+
+    neural-chat:
+      name: neural-chat
+      provider: ollama
+      context_window: 4096
+      cost:
+        input: 0
+        output: 0
+      best_for:
+        - local_only
+        - real_time
+
+# Phase-specific model recommendations
+phase_models:
+  requirements_analysis: gpt-4o
+  business_analysis: gpt-4o
+  architecture_design: gpt-4-turbo
+  database_design: gpt-4o
+  api_design: gpt-4o
+  ui_design: gpt-4o
+  implementation_planning: gpt-4o
+  code_generation: gpt-4o
+  code_review: gpt-4-turbo
+  test_generation: gpt-4o
+  bug_detection: gpt-4-turbo
+  documentation_generation: gpt-4o

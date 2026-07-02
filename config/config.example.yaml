@@ -1,0 +1,110 @@
+# AI Software Factory Configuration Example
+# Copy this to config.yaml and update with your settings
+
+# ============================================================
+# LLM Configuration
+# ============================================================
+llm:
+  # Provider options: openai, anthropic, gemini, openrouter, ollama, lm-studio, vllm
+  provider: openai
+  
+  # API Key - use environment variable references with ${VAR_NAME}
+  api_key: ${OPENAI_API_KEY}
+  
+  # Default model for this provider
+  model: gpt-4-turbo-preview
+  
+  # Generation parameters
+  temperature: 0.7          # Lower = more deterministic, Higher = more creative
+  max_tokens: 4000         # Maximum tokens in response
+  top_p: 1.0               # Nucleus sampling parameter
+  
+  # Retry configuration
+  retry:
+    max_retries: 3         # Number of retries on failure
+    initial_wait: 1        # Initial wait time in seconds
+    backoff_factor: 2.0    # Exponential backoff multiplier
+    max_wait: 60           # Maximum wait time between retries
+
+# ============================================================
+# Database Configuration
+# ============================================================
+database:
+  type: sqlite
+  # SQLite URL format: sqlite:///path/to/database.db
+  # Relative path: sqlite:///./factory.db
+  # Absolute path: sqlite:////home/user/factory.db
+  url: sqlite:///./factory.db
+  echo: false              # Set to true to see SQL statements
+
+# ============================================================
+# Project Configuration
+# ============================================================
+project:
+  base_path: ./projects    # Where to store project artifacts
+  auto_create: true        # Auto-create project directories
+  
+# ============================================================
+# Logging Configuration
+# ============================================================
+logging:
+  level: INFO              # DEBUG, INFO, WARNING, ERROR
+  format: json             # json or text
+  file: ./logs/factory.log # Log file path
+  max_size: 10M            # Maximum log file size
+  backup_count: 5          # Number of backup logs to keep
+
+# ============================================================
+# Pipeline Configuration
+# ============================================================
+pipeline:
+  timeout: 3600            # Timeout per phase in seconds
+  checkpoint: true         # Save checkpoints between phases
+  resumable: true          # Can resume interrupted pipelines
+
+# ============================================================
+# Web UI Configuration
+# ============================================================
+ui:
+  host: 0.0.0.0           # Bind to all interfaces
+  port: 8000              # Web UI port
+  reload: true            # Auto-reload on code changes (dev only)
+  workers: 1              # Number of workers
+  theme: dark             # dark or light
+
+# ============================================================
+# Execution Configuration
+# ============================================================
+execution:
+  parallel: false         # Run phases in parallel (experimental)
+  phase_timeout: 1800     # Timeout per phase in seconds
+  log_level: DEBUG        # Logging level during execution
+
+# ============================================================
+# Advanced Configuration
+# ============================================================
+
+# Phase-specific model overrides
+models:
+  requirements_analysis: gpt-4o
+  architecture_design: gpt-4-turbo-preview
+  code_generation: gpt-4o
+  code_review: gpt-4-turbo-preview
+  test_generation: gpt-4o
+
+# Token limits for different phases
+phase_token_limits:
+  requirements_analysis: 8000
+  architecture_design: 8000
+  code_generation: 4000
+  test_generation: 4000
+
+# Artifact retention policy
+artifacts:
+  keep_all_versions: true  # Keep all artifact versions
+  max_versions_per_artifact: 10
+
+# Validation strictness
+validation:
+  strict_mode: false       # Fail on any validation error
+  warn_on_failure: true    # Log warnings for validation failures
